@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -Eeufo pipefail
+
+printf "\033[3;35m%s\033[m\n" "brew installing..."
+
+# shared
+{{ $brews := list
+    "mise"
+    "gnupg"
+    "git"
+    "git-secret"
+    "docker-compose"
+    "google-japanese-ime"
+-}}
+
+{{ $casks := list
+    "docker"
+    "raycast"
+    "notion"
+    "slack"
+    "discord"
+    "warp"
+    "visual-studio-code"
+    "cursor"
+    "todoist"
+    "microsoft-teams"
+    "zoom"
+    "google-cloud-sdk"
+    "google-drive"
+    "google-chrome"
+-}}
