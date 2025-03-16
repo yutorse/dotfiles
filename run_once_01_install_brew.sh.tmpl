@@ -30,3 +30,14 @@ printf "\033[3;35m%s\033[m\n" "brew installing..."
     "google-drive"
     "google-chrome"
 -}}
+
+brew bundle --no-lock --file=-<<EOF
+tap "yutorse/dotfiles", "https://github.com/yutorse/dotfiles"
+tap "homebrew/cask-versions"
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
