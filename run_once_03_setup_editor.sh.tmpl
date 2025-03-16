@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -Eeufo pipefail
+
+echo "Installing VSCode and Cursor extensions..."
+
+# VSCode extensions
+if command -v code &> /dev/null; then
+  if [[ -f "{{ .chezmoi.home }}/.config/vscode/extensions.txt" ]]; then
+    xargs -n 1 code --install-extension < "{{ .chezmoi.home }}/extensions/vscode.txt"
+    echo "✅ VSCode extensions installed."
+  else
+    echo "⚠️ VSCode extensions file not found. Skipping..."
+  fi
+else
+  echo "⚠️ VSCode is not installed. Skipping VSCode extensions."
+fi
+
+# Cursor の拡張機能をインストール
+if command -v cursor &> /dev/null; then
+  if [[ -f "{{ .chezmoi.home }}/.config/cursor/extensions.txt" ]]; then
+    xargs -n 1 cursor --install-extension < "{{ .chezmoi.home }}/extensions/cursor.txt"
+    echo "✅ Cursor extensions installed."
+  else
+    echo "⚠️ Cursor extensions file not found. Skipping..."
+  fi
+else
+  echo "⚠️ Cursor is not installed. Skipping Cursor extensions."
+fi
+
+echo "VSCode and Cursor extensions installation completed."
