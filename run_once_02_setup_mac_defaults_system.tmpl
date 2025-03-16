@@ -20,9 +20,6 @@ defaults write com.apple.dock show-recents -bool true
 # ウィンドウの最小化アニメーション: スケール
 defaults write com.apple.dock mineffect -string "scale"
 
-# Dockを再起動
-killall Dock
-
 #==============================================================================
 # Finder
 #==============================================================================
@@ -70,7 +67,7 @@ defaults write com.apple.dock expose-group-by-app -bool true
 #==============================================================================
 
 # ドキュメントフォーマット: txt
-defaults write com.apple.TextEdit "RichText" -bool "true" && killall TextEdit
+defaults write com.apple.TextEdit RichText -bool true
 
 # サイドバーのアイコンサイズ: 中
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
