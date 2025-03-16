@@ -1,0 +1,79 @@
+#!/bin/bash
+
+set -Eeufo pipefail
+
+# https://macos-defaults.com
+# https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+
+printf "\033[3;35m%s\033[m\n" "setting up configure..."
+
+#==============================================================================
+# Dock
+#==============================================================================
+
+# Dockを自動的に表示/非表示: 非表示
+defaults write com.apple.dock autohide -bool true
+
+# 最近使ったアプリケーションを表示: する
+defaults write com.apple.dock show-recents -bool true
+
+# ウィンドウの最小化アニメーション: スケール
+defaults write com.apple.dock mineffect -string "scale"
+
+# Dockを再起動
+killall Dock
+
+#==============================================================================
+# Finder
+#==============================================================================
+
+# 拡張子を常に表示: する
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# パスバーを表示: する
+defaults write com.apple.finder ShowPathbar -bool true
+
+#==============================================================================
+# Desktop
+#==============================================================================
+
+# デスクトップでフォルダを最初に表示: する
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
+
+#==============================================================================
+# Menu bar
+#==============================================================================
+
+# タイムセパレータを常に表示: する
+defaults write com.apple.menuextra.clock FlashDateSeparators -bool true
+
+# 時計: 24時間表示
+defaults write com.apple.menuextra.clock Show24Hour -int 1
+# 時計: 日付を表示
+defaults write com.apple.menuextra.clock ShowDate -int 1
+# 時計: 曜日を表示
+defaults write com.apple.menuextra.clock ShowDayOfWeek -int 1
+# 時計: 秒を表示
+defaults write com.apple.menuextra.clock ShowSeconds -int 1
+
+killall SystemUIServer
+
+#==============================================================================
+# Mission Control
+#==============================================================================
+
+# ウインドウをアプリケーションごとにグループ化: する
+defaults write com.apple.dock expose-group-by-app -bool true
+
+#==============================================================================
+# Others
+#==============================================================================
+
+# ドキュメントフォーマット: txt
+defaults write com.apple.TextEdit "RichText" -bool "true" && killall TextEdit
+
+# サイドバーのアイコンサイズ: 中
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+# スクロールバーを表示: マウスまたはトラックパッドに基づいて自動的に表示
+defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
