@@ -2,7 +2,7 @@
 
 set -Eeufo pipefail
 
-echo "Installing VSCode and Cursor extensions..."
+echo "Installing VSCode extensions..."
 
 MAX_RETRIES=5
 RETRY_DELAY=5
@@ -32,5 +32,3 @@ if command -v code &> /dev/null; then
 else
   echo "⚠️ VSCode is not installed. Skipping VSCode extensions."
 fi
-
-echo "VSCode extensions installation completed."
