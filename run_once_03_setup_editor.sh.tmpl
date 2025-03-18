@@ -4,11 +4,28 @@ set -Eeufo pipefail
 
 echo "Installing VSCode and Cursor extensions..."
 
+MAX_RETRIES=5
+RETRY_DELAY=5
+
+install_extensions() {
+  local file="$1"
+  local retries=0
+
+  while (( retries < MAX_RETRIES )); do
+    xargs -n 1 code --install-extension < "$file" && return 0
+    ((retries++))
+    echo "⚠️ Attempt $retries/$MAX_RETRIES failed. Retrying in $RETRY_DELAY seconds..."
+    sleep "$RETRY_DELAY"
+  done
+
+  echo "❌ Failed to install extensions after $MAX_RETRIES attempts."
+  return 1
+}
+
 # VSCode extensions
 if command -v code &> /dev/null; then
   if [[ -f "$HOME/.local/share/chezmoi/extensions/vscode.txt" ]]; then
-    xargs -n 1 code --install-extension < "$HOME/.local/share/chezmoi/extensions/vscode.txt"
-    echo "✅ VSCode extensions installed."
+    install_extensions "$HOME/.local/share/chezmoi/extensions/vscode.txt" && echo "✅ VSCode extensions installed." || echo "❌ VSCode extensions installation failed."
   else
     echo "⚠️ VSCode extensions file not found. Skipping..."
   fi
@@ -16,16 +33,4 @@ else
   echo "⚠️ VSCode is not installed. Skipping VSCode extensions."
 fi
 
-# Cursor の拡張機能をインストール
-if command -v cursor &> /dev/null; then
-  if [[ -f "$HOME/.local/share/chezmoi/extensions/cursor.txt" ]]; then
-    xargs -n 1 cursor --install-extension < "$HOME/.local/share/chezmoi/extensions/cursor.txt"
-    echo "✅ Cursor extensions installed."
-  else
-    echo "⚠️ Cursor extensions file not found. Skipping..."
-  fi
-else
-  echo "⚠️ Cursor is not installed. Skipping Cursor extensions."
-fi
-
-echo "VSCode and Cursor extensions installation completed."
+echo "VSCode extensions installation completed."

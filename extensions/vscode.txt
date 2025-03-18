@@ -12,10 +12,6 @@ github.copilot
 github.copilot-chat
 github.vscode-github-actions
 golang.go
-grapecity.gc-excelviewer
-graphql.vscode-graphql
-graphql.vscode-graphql-syntax
-hashicorp.terraform
 ionutvmi.path-autocomplete
 lokalise.i18n-ally
 ms-ceintl.vscode-language-pack-ja
@@ -27,7 +23,6 @@ ms-vscode-remote.vscode-remote-extensionpack
 ms-vscode.remote-explorer
 ms-vscode.remote-server
 ms-vsliveshare.vsliveshare
-ms-vsliveshare.vsliveshare-audio
 njpwerner.autodocstring
 oderwat.indent-rainbow
 pkief.material-icon-theme
