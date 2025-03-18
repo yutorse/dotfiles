@@ -6,8 +6,8 @@ echo "Installing VSCode and Cursor extensions..."
 
 # VSCode extensions
 if command -v code &> /dev/null; then
-  if [[ -f "{{ .chezmoi.home }}/.config/vscode/extensions.txt" ]]; then
-    xargs -n 1 code --install-extension < "{{ .chezmoi.home }}/extensions/vscode.txt"
+  if [[ -f "$HOME/.local/share/chezmoi/extensions/vscode.txt" ]]; then
+    xargs -n 1 code --install-extension < "$HOME/.local/share/chezmoi/extensions/vscode.txt"
     echo "✅ VSCode extensions installed."
   else
     echo "⚠️ VSCode extensions file not found. Skipping..."
@@ -18,8 +18,8 @@ fi
 
 # Cursor の拡張機能をインストール
 if command -v cursor &> /dev/null; then
-  if [[ -f "{{ .chezmoi.home }}/.config/cursor/extensions.txt" ]]; then
-    xargs -n 1 cursor --install-extension < "{{ .chezmoi.home }}/extensions/cursor.txt"
+  if [[ -f "$HOME/.local/share/chezmoi/extensions/cursor.txt" ]]; then
+    xargs -n 1 cursor --install-extension < "$HOME/.local/share/chezmoi/extensions/cursor.txt"
     echo "✅ Cursor extensions installed."
   else
     echo "⚠️ Cursor extensions file not found. Skipping..."
