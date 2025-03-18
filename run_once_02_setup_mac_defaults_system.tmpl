@@ -20,6 +20,9 @@ defaults write com.apple.dock show-recents -bool true
 # ウィンドウの最小化アニメーション: スケール
 defaults write com.apple.dock mineffect -string "scale"
 
+# アイコンサイズ: 50
+defaults write com.apple.dock tilesize -int 50
+
 #==============================================================================
 # Finder
 #==============================================================================
@@ -38,6 +41,14 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 
 #==============================================================================
+# Trackpad
+#==============================================================================
+
+# タップでクリック: する
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+
+#==============================================================================
 # Menu bar
 #==============================================================================
 
@@ -53,14 +64,19 @@ defaults write com.apple.menuextra.clock ShowDayOfWeek -int 1
 # 時計: 秒を表示
 defaults write com.apple.menuextra.clock ShowSeconds -int 1
 
-killall SystemUIServer
+# WiFiを表示: する
+defaults write com.apple.controlcenter NSStatusItem Visible WiFi -bool true
+# Bluetoothを表示: する
+defaults write com.apple.controlcenter NSStatusItem Visible Bluetooth -bool true
+# バッテリーを表示: する
+defaults write com.apple.controlcenter NSStatusItem Visible Battery -bool true
 
 #==============================================================================
 # Mission Control
 #==============================================================================
 
 # ウインドウをアプリケーションごとにグループ化: する
-defaults write com.apple.dock expose-group-by-app -bool true
+defaults write com.apple.dock expose-group-apps -bool true
 
 #==============================================================================
 # Others
@@ -68,6 +84,9 @@ defaults write com.apple.dock expose-group-by-app -bool true
 
 # ドキュメントフォーマット: txt
 defaults write com.apple.TextEdit RichText -bool true
+
+# ファイルを閉じるときに変更内容を保持するかどうかの確認: する
+defaults write NSGlobalDomain NSCloseAlwaysConfirmsChanges -bool true
 
 # サイドバーのアイコンサイズ: 中
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
