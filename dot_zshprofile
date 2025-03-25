@@ -1,2 +1,0 @@
-# mise
-type mise &>/dev/null && eval "$(mise activate zsh)"
